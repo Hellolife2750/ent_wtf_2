@@ -1,0 +1,108 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  font-family: "Ubuntu", sans-serif;
+  overflow-x: hidden;
+  background-color: whitesmoke;
+}
+
+input,
+textarea {
+  font-family: "Ubuntu",
+    sans-serif;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+header {
+  width: 100%;
+  height: 8vh;
+  background-color: rgb(224, 224, 224);
+  display: flex;
+  justify-content: center;
+}
+
+header .center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  height: 80%;
+  margin-right: 2rem;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+main {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+textarea {
+  outline: none;
+  border: 2px solid rgb(224, 224, 224);
+  background-color: white;
+  resize: none;
+  border-radius: .5rem;
+  padding: 1rem;
+  width: 50%;
+  height: 80%;
+}
+
+#steps li {
+  font-size: 1.2rem;
+  list-style-type: decimal;
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: underline;
+  color: rgb(89, 89, 223);
+
+}
+
+#copy-btn {
+  background-color: rgb(89, 89, 223);
+  color: white;
+  font-size: 1.2rem;
+  padding: .5rem;
+  border-radius: .2rem;
+  margin-top: 1rem;
+  text-transform: uppercase;
+}
+
+#copy-btn:active {
+  scale: .9;
+}
+
+/* middle screen size */
+@media (max-width: 1000px) {
+  textarea {
+    width: 80%;
+  }
+}
+
+/* smartphone size */
+@media (max-width: 700px) {
+  textarea {
+    width: 100%;
+    border-radius: 0;
+  }
+}
