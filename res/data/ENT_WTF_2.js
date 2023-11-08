@@ -8,7 +8,7 @@
 // @match        https://idp-ubx.u-bordeaux.fr/*
 // @match        https://cas.u-bordeaux.fr/cas/login*
 // @match        https://ent.u-bordeaux.fr/uPortal/*
-// @icon         
+// @icon         https://hellolife2750.github.io/ent_wtf_2/res/img/LogoIUT.png
 // @grant        none
 // ==/UserScript==
 
