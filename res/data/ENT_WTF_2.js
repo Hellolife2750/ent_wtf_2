@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         New ENT WTF
-// @namespace    http://tampermonkey.net/
+// @namespace    https://hellolife2750.github.io/ent_wtf_2/
 // @version      0.1
 // @description  Customise ton ENT
 // @author       Un étudiant talentueux
@@ -24,6 +24,19 @@
     // Permet d'aller à l'url spécifiée
     const goTo = (url) => { window.location.href = url; }
 
+    // Renvoie Vrai ou Faux si on est sur un sous-domaine de l'url passée en argument
+    const isOnPage = (url) => window.location.href.indexOf(url) !== -1
+
+    // Supprime un élément de la page, à partir de sa référence (querySelector) passée en argument
+    const removeElem = (elementRef) => { select(elementRef)?.remove(); }
+
+    // Supprime les éléments de la page contenu dans le tableau de références passé en argument
+    const removeAllElem = (elementsRefs) => {
+        elementsRefs.forEach(el => {
+            removeElem(el);
+        });
+    }
+
     // On arrive sur la page de moodle en étant déconnecté, la procédure de connexion est lancée automatiquement
     const logInToMoodle = () => select('.login.pl-2 a')?.click();
 
@@ -41,6 +54,14 @@
         (window.location.href.indexOf("https://moodle.u-bordeaux.fr/?redirect=") !== -1) && goTo('https://moodle.u-bordeaux.fr/');
     }
 
+    // Ajuste les éléments à afficher sur la page d'accueil de moodle
+    const customMoodleHome = () => {
+        if (isOnPage('https://moodle.u-bordeaux.fr/my/')) {
+            removeAllElem(['footer', '#topofscroll .drawer-toggler>.btn', '#nav-notification-popover-container', '[id*="message-drawer-toggle"]']);
+            select('body').style.overflow = "hidden";
+        }
+    }
+
     // Quand on se connecte à l'ENT, être redirigé directement vers Zimbra.
     const goToZimbra = () => {
         const zimbraBtn = select("#uPfname_mailBx a");
@@ -56,10 +77,10 @@
 
             goToMoodleHome();
 
+            customMoodleHome();
+
             goToZimbra();
         }
-
-
     }
     checkDocumentState();
 
