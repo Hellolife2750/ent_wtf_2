@@ -8,6 +8,7 @@
 // @match        https://idp-ubx.u-bordeaux.fr/*
 // @match        https://cas.u-bordeaux.fr/cas/login*
 // @match        https://ent.u-bordeaux.fr/uPortal/*
+// @match        https://notes.iut.u-bordeaux.fr/*
 // @icon         https://hellolife2750.github.io/ent_wtf_2/res/img/LogoIUT.png
 // @grant        none
 // ==/UserScript==
@@ -56,8 +57,8 @@
 
     // Ajuste les éléments à afficher sur la page d'accueil de moodle
     const customMoodleHome = () => {
-        if (isOnPage('https://moodle.u-bordeaux.fr/my/')) {
-            removeAllElem(['footer', '#topofscroll .drawer-toggler>.btn', '#nav-notification-popover-container', '[id*="message-drawer-toggle"]']);
+        if (isOnPage('https://moodle.u-bordeaux.fr/')) {
+            removeAllElem(['footer', '#topofscroll .drawer-toggler>.btn', '#nav-notification-popover-container', '[id*="message-drawer-toggle"]', '#topofscroll button.btn']);
             select('body').style.overflow = "hidden";
         }
     }
@@ -66,6 +67,22 @@
     const goToZimbra = () => {
         const zimbraBtn = select("#uPfname_mailBx a");
         zimbraBtn && goTo(zimbraBtn.href);
+    }
+
+    const showAverageMark = () => {
+        const averageSection = select('.releve>section:nth-child(3)');
+        console.log(averageSection);
+        averageSection && (averageSection.style.display = 'block');
+
+        /*let styles = document.createElement('style');
+        styles.innerText = `.releve>section:nth-child(3) {
+    display: block;
+
+}`;
+        document.body.appendChild(styles);*/
+
+        document.head.insertAdjacentHTML("beforeend", `<style>.releve>section:nth-child(3){display:block !important;}</style>`);
+
     }
 
     const checkDocumentState = () => {
@@ -80,6 +97,8 @@
             customMoodleHome();
 
             goToZimbra();
+
+            showAverageMark();
         }
     }
     checkDocumentState();
